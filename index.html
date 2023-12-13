@@ -65,8 +65,15 @@
         <button id="clear-form" class="text-white w-1/2 hover:bg-gray-600 rounded-md">Limpar</button>
       </div>
       </aside>
-    <main>
-      <p>Resultados</p>
+    <main class="h-full">
+      <section id="charts-container">
+        <div class="h-[36dvh]">
+          <p>Resultado Final</p>
+          <canvas id="final-money-distribution"></canvas>
+        </div>
+        <div class="h-56[dvh]">Progressão</div>
+        <canvas id="progression"></canvas>
+      </section>
     </main>
     <script type="module" src="./main.js"></script>
   </body>
