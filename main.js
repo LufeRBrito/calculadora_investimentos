@@ -75,7 +75,7 @@ function renderProgression(evt) {
   const finalInvestmentObject = returnsArray[returnsArray.length - 1];
 
   doughnutChartReference = new Chart(finalMoneyChart, {
-    type: "doughnut",
+    type: "pie",
     data: {
       labels: ["Total investido", "Rendimento", "Imposto"],
       datasets: [
@@ -89,14 +89,22 @@ function renderProgression(evt) {
               finalInvestmentObject.totalInterestReturns * (taxRate / 100)
             ),
           ],
-          backgroundColor: [
-            "rgb(255, 99, 132)",
-            "rgb(54, 162, 235)",
-            "rgb(255, 205, 86)",
-          ],
+          backgroundColor: ["#d4d8e3", "#19999f", "#252745"],
           hoverOffset: 4,
         },
       ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: "#d4d8e3",
+            font: {
+              size: 16,
+            },
+          },
+        },
+      },
     },
   });
 
@@ -110,25 +118,41 @@ function renderProgression(evt) {
           data: returnsArray.map((investmentObject) =>
             formatCurrencyToGraph(investmentObject.investedAmount)
           ),
-          backgroundColor: "rgb(255, 99, 132)",
+          backgroundColor: "#00436a",
         },
         {
           label: "Retorno do Investimento",
           data: returnsArray.map((investmentObject) =>
             formatCurrencyToGraph(investmentObject.interestReturns)
           ),
-          backgroundColor: "rgb(54, 162, 235)",
+          backgroundColor: "#55babf",
         },
       ],
     },
     options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: "#d4d8e3",
+            font: {
+              size: 18,
+            },
+          },
+        },
+      },
       responsive: true,
       scales: {
         x: {
           stacked: true,
+          ticks: {
+            color: "#d4d8e3",
+          },
         },
         y: {
           stacked: true,
+          ticks: {
+            color: "#d4d8e3",
+          },
         },
       },
     },
@@ -147,6 +171,10 @@ function resetCharts() {
   ) {
     doughnutChartReference.destroy();
     progressionChartReference.destroy();
+  }
+  const tableElement = document.getElementById("results-table");
+  if (tableElement) {
+    tableElement.innerHTML = "";
   }
 }
 
@@ -203,6 +231,18 @@ for (const formElement of form) {
     formElement.addEventListener("blur", validateInput);
   }
 }
+
+const mainEl = document.querySelector("main");
+const carouselEl = document.getElementById("carousel");
+const nextButton = document.getElementById("slide-arrow-next");
+const previousButton = document.getElementById("slide-arrow-previous");
+
+nextButton.addEventListener("click", () => {
+  carouselEl.scrollLeft += mainEl.clientWidth;
+});
+previousButton.addEventListener("click", () => {
+  carouselEl.scrollLeft -= mainEl.clientWidth;
+});
 
 form.addEventListener("submit", renderProgression);
 clearFormButton.addEventListener("click", clearForm);

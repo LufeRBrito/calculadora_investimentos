@@ -52,6 +52,8 @@ function createTableBody(tableReference, tableItems, columnsArray) {
     const tableRow = document.createElement("tr");
     if (itemIndex % 2 !== 0) {
       tableRow.classList.add("bg-gray-200");
+    } else {
+      tableRow.classList.add("bg-gray-500");
     }
     for (const tableColumn of columnsArray) {
       const formatFn = tableColumn.format ?? ((info) => info);

@@ -7,7 +7,7 @@
     <title>Calculadora de Investimentos</title>
   </head>
   <body class="h-[100dvh] grid grid-cols-3 grid-rows-2">
-    <aside class="bg-gray-800 row-span-2 flex flex-col justify-between py-5">
+    <aside class="bg-gray-900 row-span-2 flex flex-col justify-between py-5">
       <div class="text-center">
         <h1 class="text-2xl font-bold px-6 text-white capitalize ali">Calculadora de Investimentos</h1>
         <span class="tracking-widest text-slate-500 animate-pulse">Feito por Luiz Fernando</span>
@@ -65,22 +65,25 @@
         <button id="clear-form" class="text-white w-1/2 hover:bg-gray-600 rounded-md">Limpar</button>
       </div>
       </aside>
-    <main class="row-span-2 col-span-2">
-      <section id="charts-container" class="h-full">
-        <div class="h-[36%] flex flex-col items-center pb-10">
-          <p class="font-bold text-lg">Resultado Final</p>
-          <canvas id="final-money-distribution"></canvas>
-        </div>
-        <div class="h-[56%] flex flex-col items-center">
-          <p class="font-bold text-lg">Progressão</p>
-          <canvas id="progression"></canvas>
-        </div>
-      </section>
-      <section id="table-container" class="h-full overflow-y-auto">
-        <p class="font-bold text-lg text-center">Resultados Mensais</p>
-        <table id="results-table" class="w-full max-h-full border border-separate"></table>
-      </section>
-    </main>
-    <script type="module" src="./main.js"></script>
-  </body>
-</html>
+    <main class="row-span-2 col-span-2 relative bg-gray-800">
+      <button id="slide-arrow-previous" class="absolute left-0 top-1/2 p-4 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white hover:text-neutral-50 cursor-pointer text-3xl">❮</button>
+      <button id="slide-arrow-next" class="absolute right-0 top-1/2 p-4 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white hover:text-neutral-50 cursor-pointer text-3xl">❯</button>
+      <div id="carousel" class="h-full w-full flex overflow-x-hidden">
+        <section id="charts-container" class="h-full basis-full shrink-0">
+          <div class="h-full flex flex-col items-center pb-10">
+            <canvas id="final-money-distribution"></canvas>
+          </div>
+        </section>
+        <section id="charts-container" class="h-full basis-full shrink-0">
+          <div class="h-full flex flex-col items-center">
+            <canvas id="progression" class="max-w-3xl pt-20"></canvas>
+          </div>
+        </section>
+        <section id="table-container" class="h-full overflow-y-auto basis-full shrink-0">
+          <table id="results-table" class="w-full max-h-full "></table>
+        </section>
+      </div>
+      </main>
+      <script type="module" src="./main.js"></script>
+    </body>
+    </html>
